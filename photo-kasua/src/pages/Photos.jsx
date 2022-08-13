@@ -7,11 +7,10 @@ const Photos = (props) => {
     const {images} = useContext(Context);
 
     const allImages = images.map(img => (<Img key={img.id} img={img} />) );
-    
+
     return (
         <div className="photos-page container">
             {allImages}
-            {/* <Outlet /> */}
         </div>
     )
 }

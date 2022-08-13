@@ -4,7 +4,6 @@ const Context = React.createContext("")
 const ContextProvider = (props) => {
 
     const [images, setImages] = useState(() => [])
-
     const [cart, setCart] = useState(() => [])
     const [query, setQuery] = useState(() => "")
 
@@ -46,22 +45,15 @@ const ContextProvider = (props) => {
         })
         setImages(prev => photosArray)
     }
-    console.log(images)
-
-    // const incrementLikes(id) {
-        
-    // } 
 
     const removeFromCart = (id) => {
         setCart(prev => prev.filter(img => img.id !== id))
     }
 
-    const placeOrder = () => {
-
-    }
-
+    const emptyCart = () => setCart([])
+    
     return (
-        <Context.Provider value={{images, cart, favorite, addToCart, removeFromCart, updateQuery}}>
+        <Context.Provider value={{images, cart, favorite, addToCart, removeFromCart, updateQuery, emptyCart}}>
             {props.children}
         </Context.Provider>
     );

@@ -63,11 +63,13 @@ h1 {
   text-align: center;
 }
 
-.enterBtn {
+.enterBtn,
+.order-btn  {
   padding: 0.1em 1em;
-  border: 2px solid var(--font-color);
+  border: none;
   border-radius: 15px;
   cursor: pointer;
+  background-color: var(--font-color)
 }
 
 /* Utilities */
@@ -101,7 +103,7 @@ h1 {
   display: block;
   margin: 0 auto;
   padding: .5rem 1.5rem;
-  border: red solid;
+  color: white;
 }
 
 .info-fig {
@@ -114,7 +116,9 @@ h1 {
 
 .download {
   padding: .3rem 1rem;
-  border: solid red
+  background-color: var(--font-color);
+  color: white;
+  border-radius: 10px;
 }
 
 /* Icons */

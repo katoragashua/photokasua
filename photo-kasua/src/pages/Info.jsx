@@ -16,7 +16,7 @@ const Info = (props) => {
                 <img src={info.urls.regular} alt="" className="img-info" />
             </figure>
             <div className="info">
-                <p>Views: {info.views}</p>
+                <p>Views: {info.views.toLocaleString()}</p>
                 <p>Price: ${info.price}</p>
                 <p>Likes: {info.likes}</p>
                 <p>Photographer: <span>{info.user.first_name} {info.user.last_name}</span></p>
