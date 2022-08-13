@@ -6,15 +6,20 @@ const ContextProvider = (props) => {
     const [images, setImages] = useState(() => [])
 
     const [cart, setCart] = useState(() => [])
+    const [query, setQuery] = useState(() => "")
 
     useEffect(() => {
-        fetch(`https://api.unsplash.com//photos/random/?&count=3&client_id=hjRE5t2RVXBqp561CfadH4aoW5oMSuEhDXsDxFJJ_nU`)
+        fetch(`https://api.unsplash.com//photos/random/?query=${query}&count=3&client_id=hjRE5t2RVXBqp561CfadH4aoW5oMSuEhDXsDxFJJ_nU`)
             .then(response => response.json())
             .then(data => {
                 const photosArray = data.map(datum => ({...datum, isFavorite: false, price: getPrice()}))
                 setImages(prev => photosArray)
             })
-    }, [])
+    }, [query])
+
+    function updateQuery(word) {
+        setQuery(prev => word)
+    }
     
     const addToCart = (id) => {
         const photo = images.find(img => img.id === id)
@@ -33,7 +38,7 @@ const ContextProvider = (props) => {
                 return {
                     ...img,
                     isFavorite: !img.isFavorite,
-                    likes: img.isFavorite? img.likes + 1: img.likes - 1
+                    likes: !img.isFavorite? img.likes + 1: img.likes - 1
                 }
             }else {
                 return img
@@ -41,15 +46,22 @@ const ContextProvider = (props) => {
         })
         setImages(prev => photosArray)
     }
+    console.log(images)
+
+    // const incrementLikes(id) {
+        
+    // } 
 
     const removeFromCart = (id) => {
         setCart(prev => prev.filter(img => img.id !== id))
     }
 
-    
+    const placeOrder = () => {
+
+    }
 
     return (
-        <Context.Provider value={{images, cart, favorite, addToCart, removeFromCart}}>
+        <Context.Provider value={{images, cart, favorite, addToCart, removeFromCart, updateQuery}}>
             {props.children}
         </Context.Provider>
     );

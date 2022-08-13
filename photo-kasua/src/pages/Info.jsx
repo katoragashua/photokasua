@@ -17,7 +17,7 @@ const Info = (props) => {
             </figure>
             <div className="info">
                 <p>Views: {info.views}</p>
-                <p>Price: {info.price}</p>
+                <p>Price: ${info.price}</p>
                 <p>Likes: {info.likes}</p>
                 <p>Photographer: <span>{info.user.first_name} {info.user.last_name}</span></p>
                 <p>Username: {info.user.username}</p>
