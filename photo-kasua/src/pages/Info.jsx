@@ -5,10 +5,14 @@ import useLogic from "../useLogic"
 
 
 const Info = (props) => {
-    const {query} = useParams()
-    const {images} = props
-    console.log(query)
-    const info = images.find(img => img.id === query)
+    const {img_query} = useParams();
+    const {images, photos, queryString} = props;
+
+    // Dynamically choosing what state array to use if you're coming from Home or Photo pages.
+    const arr = queryString? photos : images;
+
+    // Find the photo clicked on
+    const info = arr.find(img => img.id === img_query)
     console.log(info)
     return (
         <div className="info-page container">

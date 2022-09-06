@@ -5,6 +5,7 @@ function useLogic() {
 
     // const switchHoverState = () => setHovered(prev => !prev)
 
+    // Changing hover states
     const enterHoverState = () => setHovered(true)
 
     const leaveHoverState = () => setHovered(false)
