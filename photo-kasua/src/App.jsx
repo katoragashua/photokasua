@@ -36,6 +36,9 @@ function App() {
           }
         />
       </Routes>
+      <h5 style={{ textAlign: "center" }}>
+        Huge thanks to Unplash for letting developers like me use their Api
+      </h5>
     </div>
   );
 }

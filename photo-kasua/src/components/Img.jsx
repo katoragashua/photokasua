@@ -42,7 +42,8 @@ const Img = (props) => {
 
     const imgPrice =  <span className="price">${price}</span>
 
-    
+    const screen = window.innerWidth
+    console.log(screen)
 
     return (
         <div className={`img-div ${orientation()}`} ref={hoverRef}>

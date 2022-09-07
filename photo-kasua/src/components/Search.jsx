@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Search = (props) => {
   const { updateQuery, hour } = useContext(Context);
+  const[photographer, setPhotographer] = useState(() => "")
 
   // Declaring a state for the Search components background
   const [searchBg, setSearchBg] = useState(() => "");
@@ -21,7 +22,8 @@ const Search = (props) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        return setSearchBg((prev) => data.urls.regular);
+        setSearchBg((prev) => data.urls.regular);
+        setPhotographer(prev => <span>{data.user.first_name} {data.user.last_name}</span>)
       });
   }, [hour]);
 
@@ -59,10 +61,17 @@ const Search = (props) => {
         backgroundImage: `url(${searchBg})`,
       }}
     >
-      <h2 style={{ textAlign: "center", textShadow: "1px 1px 1px black", color: "white" } }>
+      <h2
+        style={{
+          textAlign: "center",
+          textShadow: "2px 2px 2px black",
+          color: "white",
+        }}
+      >
         Download free stock photos, Royalty free or buy them in frames.
       </h2>
       <div className="container">{searchQuery}</div>
+      <h4 style={{textAlign: "center", textShadow: "2px 2px 2px black"}}>photo by {photographer}</h4>
     </div>
   );
 };

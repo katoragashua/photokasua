@@ -23,13 +23,14 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #b8bad1;
 }
 
 body, .app {
   margin: 0;
   padding: 0;
-  color: #242424;
+  color: white;
+  /* color: #242424; */
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
@@ -68,7 +69,7 @@ header {
   color: var(--font-color);
   color: whitesmoke;
   padding: 0;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 2px 2px 2px black;
 }
 
 .logo::before,
@@ -120,8 +121,8 @@ header {
 }
 
 .search-inp {
-  color: var(--font-color);
-  outline: 1px solid var(--font-color);
+  color: #242424;
+  outline: 1px solid rgb(227, 169, 163);
   border: none;
   border-radius: 5px;
   font-size: 1.1rem;
@@ -147,20 +148,20 @@ header {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: var(--font-color)
 }
 
 .enterBtn {
   display: flex;
   align-items: center;
-  color: white;
   font-weight: bolder;
+  background-color: #242424;
+  color: whitesmoke;
 }
 
 /* Utilities */
 
 .container {
-  width: 90vw;
+  width: 95vw;
   margin: 0 auto;
 }
 
@@ -190,12 +191,13 @@ header {
   margin: 0 auto;
   padding: .5rem 1.5rem;
   color: white;
+  background-color: var(--font-color);
 }
 
 
 .load-more {
   margin: 1em auto;
-  width: max-content;
+  width: max-content;  
 }
 
 .info-fig {
@@ -302,15 +304,19 @@ header {
   grid-row: span 3;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+@media screen and (max-width: 420px) {
+
+.info-page {
+  flex-direction: column;
+}
+
+.info-fig {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.img-info {
+  width: 100%;
+}
+
+}
