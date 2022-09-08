@@ -8,7 +8,6 @@ import Photos from "./pages/Photos";
 import Cart from "./pages/Cart";
 import Info from "./pages/Info";
 import { useLocation } from "react-router-dom";
-
 import { Context } from "./Context";
 
 function App() {
@@ -37,7 +36,8 @@ function App() {
         />
       </Routes>
       <h5 style={{ textAlign: "center" }}>
-        Huge thanks to Unplash for letting developers like me use their Api
+        Huge thanks to <a href="https://unsplash.com" target="_blank">Unsplash</a> for letting
+        developers like me use their Api
       </h5>
     </div>
   );

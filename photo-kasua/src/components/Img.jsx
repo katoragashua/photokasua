@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import useLogic from '../useLogic';
 import {Context} from "../Context"
 import {Link, Outlet, useParams} from "react-router-dom"
@@ -6,6 +6,8 @@ import {Link, Outlet, useParams} from "react-router-dom"
 const Img = (props) => {
     
     const {img} = props
+
+    const [screen, setScreen] = useState(() => false)
 
     // Destructuring incoming img object
     const {height, width, urls, price, likes, id, isFavorite, user} = img
@@ -42,9 +44,9 @@ const Img = (props) => {
 
     const imgPrice =  <span className="price">${price}</span>
 
-    const screen = window.innerWidth
-    console.log(screen)
 
+    let screenWidth = window.innerWidth
+    
     return (
         <div className={`img-div ${orientation()}`} ref={hoverRef}>
             {/* icons appear on hover */}
