@@ -7,6 +7,7 @@ const ContextProvider = (props) => {
   const [cart, setCart] = useState(() => []);
   const [query, setQuery] = useState(() => ({ queryString: "" }));
   const [page, setPage] = useState(() => 1);
+  const [favoriteImages, setFavoriteImages] = useState(() => []);
 
   //State to hold queried photos
   const [photos, setPhotos] = useState(() => []);
@@ -48,10 +49,8 @@ const ContextProvider = (props) => {
           }
         });
       });
-
   }, [query, page]);
 
-  console.log(images);
 
   // Increment page number
   const incrementPageNum = () => {
@@ -93,6 +92,13 @@ const ContextProvider = (props) => {
     setPhotos((prev) => photosArray);
   };
 
+  const getFavImages = () => {
+    const favImages = images.filter(img => (img.isFavorite));
+    setFavoriteImages((prev) => favImages);
+  }
+
+  console.log(favoriteImages);
+
   // Add image to cart
   const addToCart = (id) => {
     const arr = query.queryString ? photos : images;
@@ -109,8 +115,6 @@ const ContextProvider = (props) => {
   // Empty cart
   const emptyCart = () => setCart([]);
 
-  console.log(query);
-
   return (
     <Context.Provider
       value={{
@@ -119,12 +123,14 @@ const ContextProvider = (props) => {
         query,
         photos,
         hour,
+        favoriteImages,
         favorite,
         addToCart,
         removeFromCart,
         updateQuery,
         emptyCart,
         incrementPageNum,
+        getFavImages
       }}
     >
       {props.children}

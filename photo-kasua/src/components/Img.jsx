@@ -12,7 +12,7 @@ const Img = (props) => {
     // Destructuring incoming img object
     const {height, width, urls, price, likes, id, isFavorite, user} = img
 
-    const {favorite, addToCart, cart, removeFromCart,} = useContext(Context)
+    const {favorite, addToCart, cart, removeFromCart, getFavImages} = useContext(Context)
 
     const ratio =  height/width
 
@@ -32,7 +32,7 @@ const Img = (props) => {
         }
     }
 
-    const heartIcon = !isFavorite? <i className="ri-heart-line heart icon" onClick={() => favorite(id)}></i> :  <i className="ri-heart-fill heart icon" onClick={() => favorite(id)}></i>
+    const heartIcon = !isFavorite? <i className="ri-heart-line heart icon" onClick={() => favorite(id)}></i> :  <i className="ri-heart-fill heart icon" onClick={() => {favorite(id); getFavImages(); }}></i>
 
     // Getting the photographer
     const photographer = <small className="photographer"><img src={user.profile_image.small} alt={`${user.first_name}'s profile photo`} className="profile-photo"/> {user.first_name} {user.last_name}</small>

@@ -15,8 +15,7 @@ function App() {
   const { images, query, photos } = useContext(Context); 
 // Getting pathname
   const { pathname } = useLocation();
-  const { queryString } = query;
-  console.log(queryString);
+  console.log(query.queryString);
 
   return (
     <div className="app">
@@ -25,13 +24,13 @@ function App() {
       {pathname === "/" && <Search />}
       <Routes>
         <Route exact path={"/"} element={<Home />} />
-        {queryString && <Route path={`/photos`} element={<Photos />} />}
+        {query.queryString && <Route path={`/photos`} element={<Photos />} />}
         <Route path={"/cart"} element={<Cart />} />
         <Route
           exact
           path={"/:img_query"}
           element={
-            <Info images={images} photos={photos} queryString={queryString} />
+            <Info images={images} photos={photos} queryString={query.queryString} />
           }
         />
       </Routes>

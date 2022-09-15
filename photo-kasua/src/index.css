@@ -175,14 +175,25 @@ header {
 }
 
 .cart-img-div {
-  height: 200px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  display: grid;
+  grid-template: 1fr auto/repeat(6, 1fr);
+  gap: .5em;
 }
 
 .cart-img {
-  height: 100%;
+  grid-column: 1/2;
+  grid-row: 1/-1;
+  width: 40vw;
+}
+
+.del {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.cart-img-div span {
+  grid-column: 2/3;
+  grid-row: 2/3;
 }
 
 .order-btn,
@@ -317,6 +328,10 @@ header {
 
 .img-info {
   width: 100%;
+}
+
+.cart-img-div {
+  
 }
 
 }

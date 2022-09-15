@@ -3,8 +3,9 @@ import { Context } from "../Context";
 import { useNavigate } from "react-router-dom";
 
 const Search = (props) => {
-  const { updateQuery, hour } = useContext(Context);
+  const { updateQuery, hour, query } = useContext(Context);
   const[photographer, setPhotographer] = useState(() => "")
+  console.log(query)
 
   // Declaring a state for the Search components background
   const [searchBg, setSearchBg] = useState(() => "");
@@ -36,7 +37,7 @@ const Search = (props) => {
         className="search-inp"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            navigate(`./photos`, { replace: true });
+            navigate(`./photos/`, { replace: true });
             updateQuery(queryRef.current.value);
           }
         }}
@@ -45,7 +46,7 @@ const Search = (props) => {
       <span
         className="enterBtn"
         onClick={() => {
-          navigate(`./photos`, { replace: true });
+          navigate(`./photos/`, { replace: true });
           updateQuery(queryRef.current.value);
         }}
       >
