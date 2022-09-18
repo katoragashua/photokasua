@@ -22,6 +22,20 @@ function useLogic() {
           hover.removeEventListener("mouseleave", leaveHoverState);
         }; 
     }, [])
+    
+    useEffect(() => {
+      window.addEventListener("resize", () => {
+        if (window.innerWidth < 900) {
+          setHovered(true);
+        }
+      })
+
+      return () => window.removeEventListener("resize", () => {
+        if (window.innerWidth < 900) {
+          setHovered(true);
+        }})
+
+    }, []);
 
     return {hovered, hoverRef}
 }

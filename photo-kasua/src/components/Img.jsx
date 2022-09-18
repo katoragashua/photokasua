@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import useLogic from '../useLogic';
 import {Context} from "../Context"
-import {Link, Outlet, useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 
 const Img = (props) => {
     

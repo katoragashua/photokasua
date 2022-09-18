@@ -24,10 +24,9 @@ function App() {
       {pathname === "/" && <Search />}
       <Routes>
         <Route exact path={"/"} element={<Home />} />
-        {query.queryString && <Route path={`/photos`} element={<Photos />} />}
+        {query.queryString && <Route exact path={`/photos`} element={<Photos />} />}
         <Route path={"/cart"} element={<Cart />} />
         <Route
-          exact
           path={"/:img_query"}
           element={
             <Info images={images} photos={photos} queryString={query.queryString} />

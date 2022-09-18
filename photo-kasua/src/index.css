@@ -293,11 +293,12 @@ header {
 .cart-page {
   display: grid;
   gap: 1em;
+  padding-top: 2em;
 }
 
 .info-page {
   display: flex;
-
+  padding-top: 2em;
 }
 /* Orientation */
 

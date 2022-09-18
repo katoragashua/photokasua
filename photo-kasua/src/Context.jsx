@@ -5,21 +5,19 @@ const ContextProvider = (props) => {
   // Setting state
   const [images, setImages] = useState(() => []);
   const [cart, setCart] = useState(() => []);
-  const [query, setQuery] = useState(() => ({ queryString: "" }));
+  const [query, setQuery] = useState(() => ({queryString: "" }));
   const [page, setPage] = useState(() => 1);
   const [favoriteImages, setFavoriteImages] = useState(() => []);
-   const [photographer, setPhotographer] = useState(() => "");
+  const [photographer, setPhotographer] = useState(() => "");
 
-   // Declaring a state for the Search components background
-   const [searchBg, setSearchBg] = useState(() => "");
+  // Declaring a state for the Search components background
+  const [searchBg, setSearchBg] = useState(() => "");
 
   //State to hold queried photos
   const [photos, setPhotos] = useState(() => []);
 
   // Create a state to update searchBg every hour
   const [hour, setHour] = useState(() => new Date().getHours());
-
-  setTimeout(function getTIme() {});
 
   // Getting API data and passing to state
 
@@ -52,19 +50,18 @@ const ContextProvider = (props) => {
             return [];
           }
         });
-      })
+      });
   }, [query, page]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHour(prev => new Date().getHours())
-    }, 60000)
+      setHour((prev) => new Date().getHours());
+    }, 60000);
     fetch(
       `https://api.unsplash.com//photos/random/?query=nature&orientation=landscape&client_id=hjRE5t2RVXBqp561CfadH4aoW5oMSuEhDXsDxFJJ_nU`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSearchBg((prev) => data.urls.regular);
         setPhotographer((prev) => (
           <span>
@@ -72,9 +69,8 @@ const ContextProvider = (props) => {
           </span>
         ));
       });
-      return () => clearInterval(interval);
+    return () => clearInterval(interval);
   }, [hour]);
-
 
   // Increment page number
   const incrementPageNum = () => {
@@ -82,15 +78,21 @@ const ContextProvider = (props) => {
   };
 
   // Setting query
-  function updateQuery(word) {
-    setQuery((prev) => {
-      if (word.trim() === "") {
-        return { ...prev, queryString: "" };
-      } else {
-        return { ...prev, queryString: word };
-      }
-    });
+  // function updateQuery(word) {
+  //   setQuery((prev) => {
+  //     if (word.trim() === "") {
+  //       return { ...prev, queryString: "" };
+  //     } else {
+  //       return { ...prev, queryString: word };
+  //     }
+  //   });
+  // }
+
+  const handleQuery = (e) => {
+    const {value, name} = e.target
+    setQuery(prev => ({...prev, [name]: value}))
   }
+
 
   // Dynamically setting random price
   const getPrice = () => {
@@ -100,7 +102,7 @@ const ContextProvider = (props) => {
 
   // Favorite/like an image
   const favorite = (id) => {
-    const arr = query.queryString ? photos : images;
+    const arr = query.queryString !== "" ? photos : images;
     const photosArray = arr.map((img) => {
       if (img.id === id) {
         return {
@@ -117,9 +119,9 @@ const ContextProvider = (props) => {
   };
 
   const getFavImages = () => {
-    const favImages = images.filter(img => (img.isFavorite));
+    const favImages = images.filter((img) => img.isFavorite);
     setFavoriteImages((prev) => favImages);
-  }
+  };
 
   console.log(favoriteImages);
 
@@ -153,10 +155,11 @@ const ContextProvider = (props) => {
         favorite,
         addToCart,
         removeFromCart,
-        updateQuery,
+        // updateQuery,
         emptyCart,
         incrementPageNum,
         getFavImages,
+        handleQuery
       }}
     >
       {props.children}
