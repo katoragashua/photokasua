@@ -3,12 +3,8 @@ import { Context } from "../Context";
 import { useNavigate } from "react-router-dom";
 
 const Search = (props) => {
-  const { updateQuery, hour, query } = useContext(Context);
-  const[photographer, setPhotographer] = useState(() => "")
-  console.log(query)
-
-  // Declaring a state for the Search components background
-  const [searchBg, setSearchBg] = useState(() => "");
+  const { updateQuery, hour, query, searchBg, photographer } = useContext(Context);
+ 
 
   // Used to get query
   const queryRef = useRef(null);
@@ -16,17 +12,7 @@ const Search = (props) => {
   // Used to navigate to Photos page
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(
-      `https://api.unsplash.com//photos/random/?query=nature&orientation=landscape&client_id=hjRE5t2RVXBqp561CfadH4aoW5oMSuEhDXsDxFJJ_nU`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setSearchBg((prev) => data.urls.regular);
-        setPhotographer(prev => <span>{data.user.first_name} {data.user.last_name}</span>)
-      });
-  }, [hour]);
+  
 
   // Creating a search input with navigation logic and query updating logic
   const searchQuery = (
@@ -69,10 +55,10 @@ const Search = (props) => {
           color: "white",
         }}
       >
-        Download free stock photos, Royalty free or buy them in frames.
+        Download free stock photos, royalty free, or buy them in frames.
       </h2>
       <div className="container">{searchQuery}</div>
-      <h4 style={{textAlign: "center", textShadow: "2px 2px 2px black"}}>photo by {photographer}</h4>
+      <p style={{textAlign: "center", textShadow: "2px 2px 2px black"}}>photo by {photographer}</p>
     </div>
   );
 };

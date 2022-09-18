@@ -8,6 +8,10 @@ const ContextProvider = (props) => {
   const [query, setQuery] = useState(() => ({ queryString: "" }));
   const [page, setPage] = useState(() => 1);
   const [favoriteImages, setFavoriteImages] = useState(() => []);
+   const [photographer, setPhotographer] = useState(() => "");
+
+   // Declaring a state for the Search components background
+   const [searchBg, setSearchBg] = useState(() => "");
 
   //State to hold queried photos
   const [photos, setPhotos] = useState(() => []);
@@ -48,8 +52,28 @@ const ContextProvider = (props) => {
             return [];
           }
         });
-      });
+      })
   }, [query, page]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHour(prev => new Date().getHours())
+    }, 60000)
+    fetch(
+      `https://api.unsplash.com//photos/random/?query=nature&orientation=landscape&client_id=hjRE5t2RVXBqp561CfadH4aoW5oMSuEhDXsDxFJJ_nU`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSearchBg((prev) => data.urls.regular);
+        setPhotographer((prev) => (
+          <span>
+            {data.user.first_name} {data.user.last_name}
+          </span>
+        ));
+      });
+      return () => clearInterval(interval);
+  }, [hour]);
 
 
   // Increment page number
@@ -124,13 +148,15 @@ const ContextProvider = (props) => {
         photos,
         hour,
         favoriteImages,
+        searchBg,
+        photographer,
         favorite,
         addToCart,
         removeFromCart,
         updateQuery,
         emptyCart,
         incrementPageNum,
-        getFavImages
+        getFavImages,
       }}
     >
       {props.children}
